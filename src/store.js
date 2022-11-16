@@ -7,7 +7,7 @@ export const store = reactive({
   apiKey: "87376ba2aeb5004bae20350f2bfb7968",
   apiQuery: "",
   errorMessage: null,
-  movies: [],
+  movies: "",
   callApi() {
     if (this.apiQuery !== "") {
       const config = {
@@ -22,6 +22,7 @@ export const store = reactive({
       axios(config)
         .then((response) => {
           console.log(response.data.results);
+          this.movies = response.data.results;
         })
         .catch((error) => {
           console.error(error.message);
