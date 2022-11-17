@@ -1,8 +1,11 @@
+
 <script>
+import { store } from '../store';
 export default {
     name: 'MoviesItem',
     data() {
         return {
+            store,
             availableLanguages: ["en", "it", "es", "fr", "de"]
         }
     },
@@ -18,6 +21,7 @@ export default {
     <div class="col">
         <div class="movie">
             <ol>
+                <li><img :src="`${store.imgPath}${store.imgDim}` + movie.backdrop_path" alt="img not available"></li>
                 <li>
                     Titolo:
                     <span v-if="movie.title">{{ movie.title }}</span>

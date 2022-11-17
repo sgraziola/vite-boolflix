@@ -9,6 +9,8 @@ export const store = reactive({
   apiQuery: "",
   errorMessage: null,
   movies: "",
+  imgPath: "https://image.tmdb.org/t/p/",
+  imgDim: "w342",
   callApi() {
     const movieConfig = {
       method: "get",
