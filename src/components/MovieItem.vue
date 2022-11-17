@@ -1,12 +1,20 @@
 
 <script>
+
 import { store } from '../store';
 export default {
     name: 'MoviesItem',
+
     data() {
         return {
             store,
             availableLanguages: ["en", "it", "es", "fr", "de"]
+        }
+    },
+    methods: {
+        getVote(num) {
+            const newVote = Math.ceil(num / 2)
+            return newVote
         }
     },
     props: {
@@ -39,7 +47,11 @@ export default {
                     <span v-if="movie.original_language == 'es'"><img src="../assets/img/es.png" alt=""></span>
 
                 </li>
-                <li>Voto: {{ movie.vote_average }}</li>
+                <li>Voto: {{ getVote(movie.vote_average) }}
+                    <font-awesome-icon icon="fa-solid fa-star" />
+                    <font-awesome-icon icon="fa-regular fa-star" />
+
+                </li>
             </ol>
         </div>
     </div>
