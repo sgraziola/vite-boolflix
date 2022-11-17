@@ -50,9 +50,7 @@ export default {
                 </li>
                 <li>Voto: {{ getVote }} / 5 </li>
                 <li>
-                    <font-awesome-icon v-for="n in 5" icon="fa-star"
-                        :class="n <= getVote ? 'fa-regular' : 'fa-solid'" />
-
+                    <i v-for="n in 5" class="fa-star" :class="n <= getVote ? 'fa-solid' : 'fa-regular'"></i>
                 </li>
             </ol>
         </div>
@@ -61,11 +59,11 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-.fa-regular {
+/* .fa-regular {
     color: gold;
 }
 
 .fa-solid {
     color: lightgray;
-}
+} */
 </style>
