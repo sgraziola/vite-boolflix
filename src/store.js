@@ -23,6 +23,7 @@ export const store = reactive({
       .then((response) => {
         console.log(response.data.results);
         this.movies = response.data.results;
+        this.apiQuery = "";
       })
       .catch((error) => {
         console.error(error.message);
