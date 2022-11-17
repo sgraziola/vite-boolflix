@@ -32,10 +32,10 @@ export const store = reactive({
 
     Promise.all([axios(movieConfig), axios(tvSeriesConfig)])
       .then((response) => {
-        console.log(response[0].data.results);
-        console.log(response[1].data.results);
+        //console.log(response[0].data.results);
+        //console.log(response[1].data.results);
         this.movies = response[0].data.results.concat(response[1].data.results);
-        console.log(this.movies);
+        //console.log(this.movies);
         this.apiQuery = "";
       })
       .catch((error) => {

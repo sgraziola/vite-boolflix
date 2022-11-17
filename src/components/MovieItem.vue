@@ -17,7 +17,7 @@ export default {
     computed: {
         getVote() {
             const newVote = Math.ceil(this.movie.vote_average / 2)
-            console.log(newVote);
+            //console.log(newVote);
             return newVote
         },
     },
