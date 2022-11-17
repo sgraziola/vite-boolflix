@@ -11,9 +11,6 @@ export default {
         return {
             store
         }
-    },
-    mounted() {
-        this.store.callApi()
     }
 }
 </script>
