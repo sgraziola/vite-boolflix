@@ -18,8 +18,12 @@ export default {
     <div class="col">
         <div class="movie">
             <ol>
-                <li>Titolo: {{ movie.title }}</li>
-                <li>Titolo Originale: {{ movie.original_title }}</li>
+                <li>
+                    Titolo:
+                    <span v-if="movie.title">{{ movie.title }}</span>
+                    <span v-else> {{ movie.original_name }}</span>
+                </li>
+                <li v-if="movie.original_title">Titolo Originale: {{ movie.original_title }}</li>
                 <li v-if="!availableLanguages.includes(movie.original_language)"> Lingua: {{ movie.original_language }}
                 </li>
                 <li v-else>
