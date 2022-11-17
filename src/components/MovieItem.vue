@@ -11,14 +11,15 @@ export default {
             availableLanguages: ["en", "it", "es", "fr", "de"]
         }
     },
-    methods: {
-        getVote(num) {
-            const newVote = Math.ceil(num / 2)
-            return newVote
-        }
-    },
     props: {
         movie: Object
+    },
+    computed: {
+        getVote() {
+            const newVote = Math.ceil(this.movie.vote_average / 2)
+            console.log(newVote);
+            return newVote
+        },
     },
 
 
@@ -47,9 +48,10 @@ export default {
                     <span v-if="movie.original_language == 'es'"><img src="../assets/img/es.png" alt=""></span>
 
                 </li>
-                <li>Voto: {{ getVote(movie.vote_average) }}
-                    <font-awesome-icon icon="fa-solid fa-star" />
-                    <font-awesome-icon icon="fa-regular fa-star" />
+                <li>Voto: {{ getVote }} / 5 </li>
+                <li>
+                    <font-awesome-icon v-for="n in 5" icon="fa-star"
+                        :class="n <= getVote ? 'fa-regular' : 'fa-solid'" />
 
                 </li>
             </ol>
@@ -58,6 +60,12 @@ export default {
 
 </template>
 
-<style>
+<style lang="scss" scoped>
+.fa-regular {
+    color: gold;
+}
 
+.fa-solid {
+    color: lightgray;
+}
 </style>
