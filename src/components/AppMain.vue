@@ -9,7 +9,9 @@ export default {
 
 <template>
     <main>
-        <MoviesList />
+        <div class="container">
+            <MoviesList />
+        </div>
     </main>
 
 </template>

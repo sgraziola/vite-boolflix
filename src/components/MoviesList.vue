@@ -18,7 +18,7 @@ export default {
 <template>
     <div class="movies">
         <div class="container">
-            <div class="row row-cols-5">
+            <div class="row row-cols-5 g-4">
                 <MovieItem :movie="movie" v-for="movie in store.movies" />
             </div>
         </div>

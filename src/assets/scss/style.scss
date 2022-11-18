@@ -4,3 +4,8 @@
 img{
     max-width: 100%;
 }
+
+body{
+    --bs-bg-opacity: 1;
+    background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
+}

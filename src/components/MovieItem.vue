@@ -39,36 +39,79 @@ export default {
 
 <template>
     <div class="col">
-        <div class="movie">
-            <ol>
-                <li><img :src="`${store.imgPath + store.imgDim}` + movie.backdrop_path" alt="img not available"></li>
-                <li>
-                    Titolo:
+        <div class="card movie">
+            <img :src="`${store.imgPath + store.imgDim}` + movie.poster_path" alt="img not available">
+            <div class="card-body">
+                <div class="card-title">
+                    <strong>Titolo: </strong>
                     <span v-if="movie.title">{{ movie.title }}</span>
+                    <span v-else> {{ movie.name }}</span>
+                </div>
+
+                <div class="card-title">
+                    <strong>Titolo Originale: </strong>
+                    <span v-if="movie.original_title">{{ movie.original_title }}</span>
                     <span v-else> {{ movie.original_name }}</span>
-                </li>
-                <li v-if="movie.original_title">Titolo Originale: {{ movie.original_title }}</li>
-                <li>
+                </div>
+
+                <div class="card-title">
+                    <strong>Lingua: </strong>
                     <img :src="genFlag(movie.original_language)" alt="" v-if="checkFlag(movie.original_language)">
                     <span v-else>{{ movie.original_language }}</span>
-                </li>
+                </div>
 
-                <li>Voto: {{ getVote }} / 5 </li>
-                <li>
+                <div class="card-title">
+                    <strong>Voto: </strong>
                     <i v-for="n in 5" class="fa-star" :class="n <= getVote ? 'fa-solid' : 'fa-regular'"></i>
-                </li>
-            </ol>
+                </div>
+                <div class="card-text">
+                    <strong>Overview: </strong>
+                    <span>{{ movie.overview }}</span>
+                </div>
+            </div>
         </div>
     </div>
 
 </template>
 
 <style lang="scss" scoped>
-/* .fa-regular {
-    color: gold;
-}
+.col {
+    img {
+        height: inherit;
+        object-fit: cover;
+        border-radius: 0.375rem;
+    }
 
-.fa-solid {
-    color: lightgray;
-} */
+    .movie {
+        height: 352px;
+
+        .card-body {
+            display: none;
+
+            img {
+                border-radius: 0;
+            }
+
+            .card-title,
+            .card-text {
+                font-size: 14px;
+            }
+
+            .card-text {
+                height: 170px;
+                overflow: auto;
+            }
+        }
+
+    }
+
+    .movie:hover .card-body {
+        display: inline-block;
+    }
+
+    .movie:hover>img {
+        display: none;
+    }
+
+}
 </style>
