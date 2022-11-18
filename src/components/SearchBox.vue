@@ -13,11 +13,12 @@ export default {
 
 <template>
     <div class="d-flex" role="search">
-        <button type="submit" class="btn btn-light border-end-0 rounded-start" @click="$emit('searchMovie')">
+        <button type="submit" class="btn btn-light border-end-0 rounded-start"
+            @click="$emit('searchMovie'), store.isHidden = true">
             <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
         </button>
         <input type="search" class="form-control border-start-0 rounded-end me-2" placeholder="Search"
-            aria-label="Search" v-model="store.apiQuery" @keyup.enter="$emit('searchMovie')">
+            aria-label="Search" v-model="store.apiQuery" @keyup.enter="$emit('searchMovie'), store.isHidden = true">
     </div>
 
 </template>

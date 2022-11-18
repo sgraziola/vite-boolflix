@@ -11,6 +11,9 @@ export default {
         return {
             store
         }
+    },
+    mounted() {
+        this.store.callTrendApi()
     }
 }
 </script>

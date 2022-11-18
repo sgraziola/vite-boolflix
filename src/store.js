@@ -5,9 +5,11 @@ import axios from "axios";
 export const store = reactive({
   movieApiUrl: "https://api.themoviedb.org/3/search/movie",
   tvSeriesApiUrl: "https://api.themoviedb.org/3/search/tv",
+  weeklyTrendingUrl: "https://api.themoviedb.org/3/trending/all/week",
   apiKey: "87376ba2aeb5004bae20350f2bfb7968",
   apiQuery: "",
   errorMessage: null,
+  isHidden: false,
   movies: "",
   imgPath: "https://image.tmdb.org/t/p/",
   imgDim: "w342",
@@ -40,6 +42,28 @@ export const store = reactive({
       })
       .catch((error) => {
         console.error(error.message);
+        this.errorMessage = error.message;
+      });
+  },
+
+  callTrendApi() {
+    const trendingConfig = {
+      method: "get",
+      url: this.weeklyTrendingUrl,
+      params: {
+        api_key: this.apiKey,
+      },
+    };
+
+    axios(trendingConfig)
+      .then((response) => {
+        //console.log(response);
+        this.movies = response.data.results;
+        //console.log(this.movies);
+        this.apiQuery = "";
+      })
+      .catch((error) => {
+        // console.error(error.message);
         this.errorMessage = error.message;
       });
   },
