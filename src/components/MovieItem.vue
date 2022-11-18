@@ -11,6 +11,17 @@ export default {
             availableLanguages: ["en", "it", "es", "fr", "de"]
         }
     },
+    methods: {
+        checkFlag(lang) {
+            if (this.availableLanguages.includes(lang)) {
+                return true
+            }
+            return false
+        },
+        genFlag(lang) {
+            return new URL(`../assets/img/${lang}.png`, import.meta.url).href
+        }
+    },
     props: {
         movie: Object
     },
@@ -30,24 +41,18 @@ export default {
     <div class="col">
         <div class="movie">
             <ol>
-                <li><img :src="`${store.imgPath}${store.imgDim}` + movie.backdrop_path" alt="img not available"></li>
+                <li><img :src="`${store.imgPath + store.imgDim}` + movie.backdrop_path" alt="img not available"></li>
                 <li>
                     Titolo:
                     <span v-if="movie.title">{{ movie.title }}</span>
                     <span v-else> {{ movie.original_name }}</span>
                 </li>
                 <li v-if="movie.original_title">Titolo Originale: {{ movie.original_title }}</li>
-                <li v-if="!availableLanguages.includes(movie.original_language)"> Lingua: {{ movie.original_language }}
+                <li>
+                    <img :src="genFlag(movie.original_language)" alt="" v-if="checkFlag(movie.original_language)">
+                    <span v-else>{{ movie.original_language }}</span>
                 </li>
-                <li v-else>
-                    Lingua:
-                    <span v-if="movie.original_language == 'en'"><img src="../assets/img/en.png" alt=""></span>
-                    <span v-if="movie.original_language == 'it'"><img src="../assets/img/it.png" alt=""></span>
-                    <span v-if="movie.original_language == 'fr'"><img src="../assets/img/fr.png" alt=""></span>
-                    <span v-if="movie.original_language == 'de'"><img src="../assets/img/de.png" alt=""></span>
-                    <span v-if="movie.original_language == 'es'"><img src="../assets/img/es.png" alt=""></span>
 
-                </li>
                 <li>Voto: {{ getVote }} / 5 </li>
                 <li>
                     <i v-for="n in 5" class="fa-star" :class="n <= getVote ? 'fa-solid' : 'fa-regular'"></i>
