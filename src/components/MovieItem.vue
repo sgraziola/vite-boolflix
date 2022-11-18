@@ -21,22 +21,30 @@ export default {
         genFlag(lang) {
             return new URL(`../assets/img/${lang}.png`, import.meta.url).href
         },
-        callTvCastApi(id) {
-            const castUrl = `${this.store.baseUrl}tv/${id}/credits?api_key=${this.store.apiKey}`
-            axios.get(castUrl)
-                .then(response => {
-                    console.log(response.data.cast);
-                    console.log(this.store.movies);
-                    this.store.movies.push(response.data.cast)
-                    console.log(this.store.movies);
-                    /*  this.store.actors = response.data.cast
-                     console.log(this.store.actors); */
-                })
-                .catch(err => {
-                    //console.error(err.message);
-                    this.store.error = err.message
-                })
-        }
+        /* callTvCastApi() {
+            this.store.movies.forEach(movie => {
+                const castUrl = `${this.store.baseUrl}tv/${id}/credits?api_key=${this.store.apiKey}`
+                axios.get(castUrl)
+                    .then(response => {
+                        let cast = "";
+                        let castLength = 0;
+                        if (response.data.cast.length < 5) {
+                            castLength = response.data.cast
+                        } else {
+                            castLength = 5
+                        }
+                        for (let i = 0; i < castLength; i++) {
+                            cast += response.data.cast[i].name;
+                        }
+
+                        store.actors.push(cast)
+                    }).catch(err => {
+                        //console.error(err.message);
+                        this.store.error = err.message
+                    })
+
+            });
+        } */
     },
     props: {
         movie: Object
@@ -68,10 +76,10 @@ export default {
                     <span v-else> {{ movie.original_name }}</span>
                 </div>
 
-                <div class="card-title">
-                    <strong v-if="callTvCastApi(movie.id)">Attori: </strong>
+                <!-- <div class="card-title">
+                    <strong v-if="store.actors">Attori: </strong>
                     <span>{{ }}</span>
-                </div>
+                </div> -->
 
                 <div class="card-title">
                     <strong>Lingua: </strong>
