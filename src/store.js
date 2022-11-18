@@ -6,11 +6,13 @@ export const store = reactive({
   movieApiUrl: "https://api.themoviedb.org/3/search/movie",
   tvSeriesApiUrl: "https://api.themoviedb.org/3/search/tv",
   weeklyTrendingUrl: "https://api.themoviedb.org/3/trending/all/week",
+  baseUrl: "https://api.themoviedb.org/3/",
   apiKey: "87376ba2aeb5004bae20350f2bfb7968",
   apiQuery: "",
   errorMessage: null,
   isHidden: false,
   movies: "",
+  actors: [],
   imgPath: "https://image.tmdb.org/t/p/",
   imgDim: "w342",
   callApi() {

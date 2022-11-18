@@ -1,6 +1,6 @@
 
 <script>
-
+import axios from 'axios';
 import { store } from '../store';
 export default {
     name: 'MoviesItem',
@@ -20,6 +20,22 @@ export default {
         },
         genFlag(lang) {
             return new URL(`../assets/img/${lang}.png`, import.meta.url).href
+        },
+        callTvCastApi(id) {
+            const castUrl = `${this.store.baseUrl}tv/${id}/credits?api_key=${this.store.apiKey}`
+            axios.get(castUrl)
+                .then(response => {
+                    console.log(response.data.cast);
+                    console.log(this.store.movies);
+                    this.store.movies.push(response.data.cast)
+                    console.log(this.store.movies);
+                    /*  this.store.actors = response.data.cast
+                     console.log(this.store.actors); */
+                })
+                .catch(err => {
+                    //console.error(err.message);
+                    this.store.error = err.message
+                })
         }
     },
     props: {
@@ -32,8 +48,6 @@ export default {
             return newVote
         },
     },
-
-
 }
 </script>
 
@@ -52,6 +66,11 @@ export default {
                     <strong>Titolo Originale: </strong>
                     <span v-if="movie.original_title">{{ movie.original_title }}</span>
                     <span v-else> {{ movie.original_name }}</span>
+                </div>
+
+                <div class="card-title">
+                    <strong v-if="callTvCastApi(movie.id)">Attori: </strong>
+                    <span>{{ }}</span>
                 </div>
 
                 <div class="card-title">
